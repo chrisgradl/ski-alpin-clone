@@ -1,0 +1,214 @@
+{
+  "RankingName": "HERREN SLALOM",
+  "RankingDescription": "Stand nach 4 von 12 Rennen",
+  "RankingType": "PersonCup",
+  "GenderId": 1,
+  "DisciplineId": 4,
+  "AditionProfileVariables": {
+    "subcategory": "skialpin",
+    "bewerb": "sla",
+    "status": null,
+    "gender": "herren",
+    "livestatus": "off"
+  },
+  "PersonRankings": [
+    {
+      "Rank": 1,
+      "PersonId": 5943,
+      "FirstName": "Manuel",
+      "LastName": "Feller",
+      "PersonImage": "https://appfeeds.orf.at/alpine.v2/static/images/people/5943.jpg?v=202401081548",
+      "GenderId": 1,
+      "NationCC3": "AUT",
+      "NationImage": "https://appfeeds.orf.at/alpine.v2/static/images/nations/AUT.png?v=20180212",
+      "Value": 345
+    },
+    {
+      "Rank": 2,
+      "PersonId": 8189,
+      "FirstName": "Atle Lie",
+      "LastName": "McGrath",
+      "PersonImage": "https://appfeeds.orf.at/alpine.v2/static/images/people/8189.jpg?v=202401081548",
+      "GenderId": 1,
+      "NationCC3": "NOR",
+      "NationImage": "https://appfeeds.orf.at/alpine.v2/static/images/nations/NOR.png?v=20180212",
+      "Value": 192
+    },
+    {
+      "Rank": 3,
+      "PersonId": 6803,
+      "FirstName": "Marco",
+      "LastName": "Schwarz",
+      "PersonImage": "https://appfeeds.orf.at/alpine.v2/static/images/people/6803.jpg?v=202401081548",
+      "GenderId": 1,
+      "NationCC3": "AUT",
+      "NationImage": "https://appfeeds.orf.at/alpine.v2/static/images/nations/AUT.png?v=20180212",
+      "Value": 180
+    },
+    {
+      "Rank": 4,
+      "PersonId": 7116,
+      "FirstName": "Clement",
+      "LastName": "Noel",
+      "PersonImage": "https://appfeeds.orf.at/alpine.v2/static/images/people/7116.jpg?v=202401081548",
+      "GenderId": 1,
+      "NationCC3": "FRA",
+      "NationImage": "https://appfeeds.orf.at/alpine.v2/static/images/nations/FRA.png?v=20180212",
+      "Value": 152
+    },
+    {
+      "Rank": 5,
+      "PersonId": 7565,
+      "FirstName": "Timon",
+      "LastName": "Haugan",
+      "PersonImage": "https://appfeeds.orf.at/alpine.v2/static/images/people/7565.jpg?v=202401081548",
+      "GenderId": 1,
+      "NationCC3": "NOR",
+      "NationImage": "https://appfeeds.orf.at/alpine.v2/static/images/nations/NOR.png?v=20180212",
+      "Value": 148
+    },
+    {
+      "Rank": 6,
+      "PersonId": 5049,
+      "FirstName": "Dave",
+      "LastName": "Ryding",
+      "PersonImage": "https://appfeeds.orf.at/alpine.v2/static/images/people/5049.jpg?v=202401081548",
+      "GenderId": 1,
+      "NationCC3": "GBR",
+      "NationImage": "https://appfeeds.orf.at/alpine.v2/static/images/nations/GBR.png?v=20180212",
+      "Value": 142
+    },
+    {
+      "Rank": 7,
+      "PersonId": 6122,
+      "FirstName": "Henrik",
+      "LastName": "Kristoffersen",
+      "PersonImage": "https://appfeeds.orf.at/alpine.v2/static/images/people/6122.jpg?v=202401081548",
+      "GenderId": 1,
+      "NationCC3": "NOR",
+      "NationImage": "https://appfeeds.orf.at/alpine.v2/static/images/nations/NOR.png?v=20180212",
+      "Value": 136
+    },
+    {
+      "Rank": 8,
+      "PersonId": 6475,
+      "FirstName": "Michael",
+      "LastName": "Matt",
+      "PersonImage": "https://appfeeds.orf.at/alpine.v2/static/images/people/6475.jpg?v=202401081548",
+      "GenderId": 1,
+      "NationCC3": "AUT",
+      "NationImage": "https://appfeeds.orf.at/alpine.v2/static/images/nations/AUT.png?v=20180212",
+      "Value": 112
+    },
+    {
+      "Rank": 9,
+      "PersonId": 6072,
+      "FirstName": "Linus",
+      "LastName": "Straßer",
+      "PersonImage": "https://appfeeds.orf.at/alpine.v2/static/images/people/6072.jpg?v=202401081548",
+      "GenderId": 1,
+      "NationCC3": "GER",
+      "NationImage": "https://appfeeds.orf.at/alpine.v2/static/images/nations/GER.png?v=20180212",
+      "Value": 108
+    },
+    {
+      "Rank": 10,
+      "PersonId": 6550,
+      "FirstName": "Marc",
+      "LastName": "Rochat",
+      "PersonImage": "https://appfeeds.orf.at/alpine.v2/static/images/people/6550.jpg?v=202401081548",
+      "GenderId": 1,
+      "NationCC3": "SUI",
+      "NationImage": "https://appfeeds.orf.at/alpine.v2/static/images/nations/SUI.png?v=20180212",
+      "Value": 105
+    },
+    {
+      "Rank": 11,
+      "PersonId": 7067,
+      "FirstName": "Loic",
+      "LastName": "Meillard",
+      "PersonImage": "https://appfeeds.orf.at/alpine.v2/static/images/people/7067.jpg?v=202401081548",
+      "GenderId": 1,
+      "NationCC3": "SUI",
+      "NationImage": "https://appfeeds.orf.at/alpine.v2/static/images/nations/SUI.png?v=20180212",
+      "Value": 103
+    },
+    {
+      "Rank": 12,
+      "PersonId": 6247,
+      "FirstName": "Daniel",
+      "LastName": "Yule",
+      "PersonImage": "https://appfeeds.orf.at/alpine.v2/static/images/people/6247.jpg?v=202401081548",
+      "GenderId": 1,
+      "NationCC3": "SUI",
+      "NationImage": "https://appfeeds.orf.at/alpine.v2/static/images/nations/SUI.png?v=20180212",
+      "Value": 93
+    },
+    {
+      "Rank": 13,
+      "PersonId": 7635,
+      "FirstName": "Fabio",
+      "LastName": "Gstrein",
+      "PersonImage": "https://appfeeds.orf.at/alpine.v2/static/images/people/7635.jpg?v=202401081548",
+      "GenderId": 1,
+      "NationCC3": "AUT",
+      "NationImage": "https://appfeeds.orf.at/alpine.v2/static/images/nations/AUT.png?v=20180212",
+      "Value": 86
+    },
+    {
+      "Rank": 14,
+      "PersonId": 7106,
+      "FirstName": "Dominik",
+      "LastName": "Raschner",
+      "PersonImage": "https://appfeeds.orf.at/alpine.v2/static/images/people/7106.jpg?v=202401081548",
+      "GenderId": 1,
+      "NationCC3": "AUT",
+      "NationImage": "https://appfeeds.orf.at/alpine.v2/static/images/nations/AUT.png?v=20180212",
+      "Value": 85
+    },
+    {
+      "Rank": 15,
+      "PersonId": 7238,
+      "FirstName": "Albert",
+      "LastName": "Popov",
+      "PersonImage": "https://appfeeds.orf.at/alpine.v2/static/images/people/7238.jpg?v=202401081548",
+      "GenderId": 1,
+      "NationCC3": "BUL",
+      "NationImage": "https://appfeeds.orf.at/alpine.v2/static/images/nations/BUL.png?v=20180212",
+      "Value": 66
+    },
+    {
+      "Rank": 22,
+      "PersonId": 6455,
+      "FirstName": "Johannes",
+      "LastName": "Strolz",
+      "PersonImage": "https://appfeeds.orf.at/alpine.v2/static/images/people/6455.jpg?v=202401081548",
+      "GenderId": 1,
+      "NationCC3": "AUT",
+      "NationImage": "https://appfeeds.orf.at/alpine.v2/static/images/nations/AUT.png?v=20180212",
+      "Value": 44
+    },
+    {
+      "Rank": 37,
+      "PersonId": 7599,
+      "FirstName": "Adrian",
+      "LastName": "Pertl",
+      "PersonImage": "https://appfeeds.orf.at/alpine.v2/static/images/people/7599.jpg?v=202401081548",
+      "GenderId": 1,
+      "NationCC3": "AUT",
+      "NationImage": "https://appfeeds.orf.at/alpine.v2/static/images/nations/AUT.png?v=20180212",
+      "Value": 12
+    },
+    {
+      "Rank": 46,
+      "PersonId": 7595,
+      "FirstName": "Simon",
+      "LastName": "Rueland",
+      "PersonImage": "https://appfeeds.orf.at/alpine.v2/static/images/people/7595.jpg?v=202401081548",
+      "GenderId": 1,
+      "NationCC3": "AUT",
+      "NationImage": "https://appfeeds.orf.at/alpine.v2/static/images/nations/AUT.png?v=20180212",
+      "Value": 4
+    }
+  ]
+}

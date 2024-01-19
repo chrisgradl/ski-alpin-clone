@@ -1,0 +1,56 @@
+{
+  "PersonId": 6354,
+  "FirstName": "Mikaela",
+  "LastName": "Shiffrin",
+  "GenderId": 2,
+  "BirthDay": "1995-03-13T00:00:00",
+  "NationName": "USA",
+  "Height": 170,
+  "Weight": 66,
+  "Equipment": "Atomic",
+  "Residence": "Vail",
+  "BirthPlace": "Vail",
+  "Age": 28,
+  "PersonImage": "https://appfeeds.orf.at/alpine.v2/static/images/people/6354.jpg?v=202401081548",
+  "NationImage": "https://appfeeds.orf.at/alpine.v2/static/images/nations/USA.png?v=20180212",
+  "WcRank": 1,
+  "WcPoints": 1029,
+  "PersonStatistics": null,
+  "PersonResultTitle": "Letzte drei Weltcup-Platzierungen",
+  "PersonResultGroups": [
+    {
+      "GroupName": "Weltcup Slalom",
+      "PersonResults": [
+        {
+          "SportEventId": 11603,
+          "EventDate": "2024-01-07T09:30:00",
+          "Rank": "DNF1",
+          "CompetitionName": "Weltcup",
+          "DisciplineName": "Slalom",
+          "LocationName": "Kranjska Gora"
+        },
+        {
+          "SportEventId": 11611,
+          "EventDate": "2024-01-16T18:00:00",
+          "Rank": "1",
+          "CompetitionName": "Weltcup",
+          "DisciplineName": "Slalom",
+          "LocationName": "Flachau"
+        }
+      ]
+    },
+    {
+      "GroupName": "Weltcup Riesenslalom",
+      "PersonResults": [
+        {
+          "SportEventId": 11602,
+          "EventDate": "2024-01-06T09:30:00",
+          "Rank": "9",
+          "CompetitionName": "Weltcup",
+          "DisciplineName": "Riesenslalom",
+          "LocationName": "Kranjska Gora"
+        }
+      ]
+    }
+  ]
+}
