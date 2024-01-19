@@ -1,0 +1,58 @@
+[
+  {
+    "CupRankingId": 4,
+    "CupRankingName": "HERREN GESAMTWELTCUP",
+    "CupRankingType": "PersonCup",
+    "CupRankingColor": "#039EFF",
+    "CupRankingTextColor": "#039EFF",
+    "GenderId": 1
+  },
+  {
+    "CupRankingId": 5,
+    "CupRankingName": "HERREN ABFAHRT",
+    "CupRankingType": "PersonCup",
+    "CupRankingColor": "#039EFF",
+    "CupRankingTextColor": "#039EFF",
+    "GenderId": 1
+  },
+  {
+    "CupRankingId": 6,
+    "CupRankingName": "HERREN SUPER-G",
+    "CupRankingType": "PersonCup",
+    "CupRankingColor": "#039EFF",
+    "CupRankingTextColor": "#039EFF",
+    "GenderId": 1
+  },
+  {
+    "CupRankingId": 7,
+    "CupRankingName": "HERREN RIESENSLALOM",
+    "CupRankingType": "PersonCup",
+    "CupRankingColor": "#039EFF",
+    "CupRankingTextColor": "#039EFF",
+    "GenderId": 1
+  },
+  {
+    "CupRankingId": 8,
+    "CupRankingName": "HERREN SLALOM",
+    "CupRankingType": "PersonCup",
+    "CupRankingColor": "#039EFF",
+    "CupRankingTextColor": "#039EFF",
+    "GenderId": 1
+  },
+  {
+    "CupRankingId": 1,
+    "CupRankingName": "NATIONENCUP GESAMT",
+    "CupRankingType": "NationCup",
+    "CupRankingColor": "#FF0303",
+    "CupRankingTextColor": "#254B7D",
+    "GenderId": 3
+  },
+  {
+    "CupRankingId": 2,
+    "CupRankingName": "NATIONENCUP HERREN",
+    "CupRankingType": "NationCup",
+    "CupRankingColor": "#FF0303",
+    "CupRankingTextColor": "#039EFF",
+    "GenderId": 1
+  }
+]

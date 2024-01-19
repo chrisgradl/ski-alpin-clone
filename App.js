@@ -4,12 +4,13 @@ import {Text, View} from 'react-native';
 import {DefaultTheme, NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeScreen from './src/screens/HomeScreen';
-import RankingsScreen from './src/screens/RankingsScreen';
+import RankingsDetailScreen from './src/screens/RankingsDetailScreen';
 import TVScreen from './src/screens/TVScreen';
 import CalendarScreen from './src/screens/CalendarScreen';
 import AtheleteDetailScreen from './src/screens/AtheleteDetailScreen';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
+import CupRankingsScreen from './src/screens/CupRankingsScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -41,7 +42,8 @@ const RankingsStack = createNativeStackNavigator();
 function RankingsStackNavigator() {
   return (
     <RankingsStack.Navigator>
-      <RankingsStack.Screen name="Rankings" component={RankingsScreen}/>
+      <RankingsStack.Screen name="Rankings" component={CupRankingsScreen}/>
+      <RankingsStack.Screen name="RankingsDetail" component={RankingsDetailScreen}/>
       <RankingsStack.Screen name="AtheleteDetail" component={AtheleteDetailScreen}/>
     </RankingsStack.Navigator>
   )
