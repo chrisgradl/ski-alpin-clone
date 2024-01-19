@@ -8,12 +8,16 @@ import AtheleteData from '../components/AthleteData';
 
 const data = require('../data/athelete-details.json');
 
-export default function AtheleteDetail () {
+export default function AtheleteDetailScreen ({ navigation, route }) {
+
+
+  const { data } = route.params;
+
   return (
     <ScrollView>
       <AtheletePicture data={data} />
       <AtheleteData data={data}/>
-      <WcPlacing data={data}/>
+      {/*<WcPlacing data={data}/>*/}
     </ScrollView>
   );
 };

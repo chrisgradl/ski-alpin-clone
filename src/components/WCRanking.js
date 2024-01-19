@@ -1,10 +1,13 @@
 import React from 'react';
-import {StyleSheet, ScrollView, Text, View, Image, SafeAreaView} from 'react-native';
+import {StyleSheet, ScrollView, Text, View, Image, SafeAreaView, TouchableOpacity} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
 const personPicSize = 60;
 const flagPicWidth = 25;
 
 export default function WCRanking({data}) {
+
+  const navigation = useNavigation();
 
   return (
     <View>
@@ -13,7 +16,9 @@ export default function WCRanking({data}) {
       </Text>
       <ScrollView>
         {data.PersonRankings.map((i, index) => (
-          <View style={{
+          <TouchableOpacity
+            onPress={() => navigation.navigate('AtheleteDetail', { data: i })}
+            style={{
             flexDirection: 'row',
             backgroundColor: index % 2 == 1 ? '#E9F8FB' : 'white',
             paddingTop: 10,
@@ -77,7 +82,7 @@ export default function WCRanking({data}) {
                 {i.Value}
               </Text>
             </View>
-          </View>))}
+          </TouchableOpacity>))}
       </ScrollView>
     </View>
   );

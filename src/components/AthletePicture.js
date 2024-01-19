@@ -1,12 +1,12 @@
 import { View, StyleSheet, Image } from 'react-native';
 
-export default function AtheletePicture() {
+export default function AtheletePicture({ data }) {
   return (
     <View style={styles.container}>
       <Image style={styles.logo} source={{uri: 'https://appfeeds.orf.at/alpine.v2/static/images/people/6354.jpg?v=202401081548'}} />
       <Image style={styles.country} source={{uri: 'https://appfeeds.orf.at/alpine.v2/static/images/nations/USA.png?v=20180212'}} />
     </View>
-    
+
   );
 }
 
