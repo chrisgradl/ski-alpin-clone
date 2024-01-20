@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import {Text, View} from 'react-native';
 import {DefaultTheme, NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeScreen from './src/screens/HomeScreen';
@@ -38,7 +37,6 @@ const MyTheme = {
 };
 
 const RankingsStack = createNativeStackNavigator();
-
 function RankingsStackNavigator() {
   return (
     <RankingsStack.Navigator>
@@ -49,7 +47,35 @@ function RankingsStackNavigator() {
   )
 }
 
-const queryClient = new QueryClient()
+const HomeStack = createNativeStackNavigator();
+function HomeStackNavigator() {
+  return (
+    <HomeStack.Navigator>
+      <HomeStack.Screen name="HomeScreen" component={HomeScreen}/>
+    </HomeStack.Navigator>
+  )
+}
+
+const TVStack = createNativeStackNavigator();
+function TVStackNavigator() {
+  return (
+    <TVStack.Navigator>
+      <TVStack.Screen name="TVScreen" component={TVScreen}/>
+    </TVStack.Navigator>
+  )
+}
+
+const CalendarStack = createNativeStackNavigator();
+function CalendarStackNavigator() {
+  return (
+    <CalendarStack.Navigator>
+      <CalendarStack.Screen name="CalendarScreen" component={CalendarScreen}/>
+    </CalendarStack.Navigator>
+  )
+}
+
+
+const queryClient = new QueryClient({defaultOptions: {queries: {retry: false}}})
 
 export default function App() {
   return (
@@ -77,10 +103,10 @@ export default function App() {
             tabBarInactiveTintColor: '#D2EDF4',
           })}
         >
-          <Tab.Screen name="Home" component={HomeScreen}/>
+          <Tab.Screen name="Home" component={HomeStackNavigator}/>
           <Tab.Screen name="RankingsTab" component={RankingsStackNavigator}/>
-          <Tab.Screen name="TV" component={TVScreen}/>
-          <Tab.Screen name="Calendar" component={TVScreen}/>
+          <Tab.Screen name="TV" component={TVStackNavigator}/>
+          <Tab.Screen name="Calendar" component={CalendarStackNavigator}/>
         </Tab.Navigator>
       </NavigationContainer>
     </QueryClientProvider>

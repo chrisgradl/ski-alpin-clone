@@ -1,32 +1,33 @@
-import React from 'react';
-import {Alert, ScrollView, View, Text, Button, ActivityIndicator} from 'react-native';
-import SiteHeader from '../components/SiteHeader';
-import Tvthek from '../components/tvthekvideos';
-import Stories from '../components/Stories';
-import { useQuery } from '@tanstack/react-query';
+import React from "react";
+import {
+  ScrollView,
+  View,
+  Text,
+  Button,
+  ActivityIndicator,
+} from "react-native";
+import SiteHeader from "../components/SiteHeader";
+import Tvthek from "../components/tvthekvideos";
+import Stories from "../components/Stories";
+import { useStories } from "../hooks/dataHooks";
 
-const storiesData = require('../data/stories.json');
-const TvthekData = require('../data/tvthek-videos.json');
-
-
-const storiesUrl = 'https://appfeeds.orf.at/alpine.v2/api/sporton?osType=1'
-
-function fetchStories() {
-  return fetch(storiesUrl).then(res => res.json());
-}
+const TvthekData = require("../data/tvthek-videos.json");
 
 export default function HomeScreen() {
-
-  const { data, isPending, error, refetch } = useQuery({ queryKey: ['storiesData'], queryFn: fetchStories})
+  const { data, isPending, error, refetch } = useStories();
 
   if (isPending) {
-    return <View style={{flex: 1, justifyContent: 'center'}}><ActivityIndicator size="large" /></View>
+    return (
+      <View style={{ flex: 1, justifyContent: "center" }}>
+        <ActivityIndicator size="large" />
+      </View>
+    );
   }
 
   if (error) {
     return (
-      <View style={{flex: 1, justifyContent: 'center'}}>
-        <Text>Error Loading Data</Text>
+      <View style={{ flex: 1, justifyContent: "center" }}>
+        <Text>Error Loading Data: {error.message}</Text>
         <Button title="try again" onPress={refetch} />
       </View>
     );
@@ -39,9 +40,9 @@ export default function HomeScreen() {
 
   return (
     <ScrollView>
-      <SiteHeader storiesData={data}/>
-      <Tvthek TvthekData={TvthekData}/>
-      <Stories storiesData={data}/>
+      <SiteHeader storiesData={data} />
+      <Tvthek TvthekData={TvthekData} />
+      <Stories storiesData={data} />
     </ScrollView>
   );
 }

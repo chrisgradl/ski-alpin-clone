@@ -2,8 +2,8 @@ import { Text, SafeAreaView, StyleSheet, ScrollView, View } from 'react-native';
 import { Card } from 'react-native-paper';
 
 export default function Stories({storiesData}) {
-  
-  const items = storiesData.MainStories.slice(1);
+
+  const items = storiesData?.MainStories?.slice(1);
 
   return (
       <View style={styles.container}>

@@ -2,11 +2,11 @@ import { Button, ScrollView, Switch, Text, Image, TextInput, StyleSheet, View, A
 import React, { useState } from 'react';
 
 export default function SiteHeader({storiesData}) {
-  
+
   const firstStory = storiesData.MainStories[0];
   const firstTitle = firstStory.Title;
-  const imageUrl = firstStory.Image.src;
-  
+  const imageUrl = firstStory?.Image?.src;
+
   return (
     <View style={styles.container}>
       <Image
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap'
   },
   text: {
-    color: 'darkblue', 
+    color: 'darkblue',
     fontSize: 20,
   },
 });
