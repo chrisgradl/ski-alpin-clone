@@ -1,5 +1,6 @@
 {
   "expo": {
+    "scheme": "skialpine",
     "name": "ski-alpin",
     "slug": "ski-alpin",
     "version": "1.0.0",
@@ -21,7 +22,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.cgradl.skialpin"
     },
     "web": {
       "favicon": "./assets/favicon.png"

@@ -6,10 +6,9 @@ import React from 'react';
 const data = require('../data/ranking-slalom.json')
 
 export default function RankingsDetailScreen({navigation, route}) {
+  const { cup, CupRankingId } = route.params;
 
-  const { cup } = route.params;
-
-  const { data, isPending, error, refetch } = useCupRankingById(cup.CupRankingId);
+  const { data, isPending, error, refetch } = useCupRankingById(CupRankingId || cup?.CupRankingId);
 
   if (isPending) {
     return <View style={{flex: 1, justifyContent: 'center'}}><ActivityIndicator size="large" /></View>

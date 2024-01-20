@@ -1,6 +1,8 @@
 import * as React from 'react';
+import * as Linking from 'expo-linking';
+import { Alert, Text } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import {DefaultTheme, NavigationContainer} from '@react-navigation/native';
+import {DefaultTheme, Link, NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeScreen from './src/screens/HomeScreen';
 import RankingsDetailScreen from './src/screens/RankingsDetailScreen';
@@ -74,13 +76,32 @@ function CalendarStackNavigator() {
   )
 }
 
+const rankingsDeeplink = `skialpine://Rankings/RankingsDetail?CupRankingId=5`
+const tvDeeplink = `skialpine://TV`
 
 const queryClient = new QueryClient({defaultOptions: {queries: {retry: false}}})
 
+const linking = {
+  prefixes: ["skialpine://"],
+  config: {
+    /* configuration for matching screens with paths */
+  },
+};
+
 export default function App() {
+
+  const url = Linking.useURL();
+
+
+  React.useEffect(() => {
+    // if(url) {
+    //   Alert.alert(url);
+    // }
+  }, [url]);
+
   return (
     <QueryClientProvider client={queryClient}>
-      <NavigationContainer theme={MyTheme}>
+      <NavigationContainer linking={linking} theme={MyTheme}>
         <Tab.Navigator
           screenOptions={({route}) => ({
             tabBarIcon: ({focused, color, size}) => {

@@ -32,7 +32,7 @@ export default function WCRanking({data}) {
             <View style={{flex: 6 /*, backgroundColor: 'red'*/}}>
 
               <View style={{flexDirection: 'column'}}>
-                <View style={{flex: 5 /*, backgroundColor: 'red'*/}}>
+                <View style={{flex: 5, backgroundColor: 'red'}}>
 
                   <View style={{flexDirection: 'row'}}>
                     <View style={{flex: 3, paddingTop: 35}}>
