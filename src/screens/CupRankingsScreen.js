@@ -17,6 +17,7 @@ function CupRankingsScreen({ navigation, route }) {
       <ScrollView>
         {data.map((cup) => (
           <CupRankingItem
+            key={cup.CupRankingId}
             onPress={() => onPress(cup)}
             cup={cup}
             color={gender === "female" ? "orange" : "blue"}
