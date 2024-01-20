@@ -40,7 +40,7 @@ const RankingsStack = createNativeStackNavigator();
 function RankingsStackNavigator() {
   return (
     <RankingsStack.Navigator>
-      <RankingsStack.Screen name="Rankings" component={CupRankingsScreen}/>
+      <RankingsStack.Screen name="RankingsScreen" component={CupRankingsScreen}/>
       <RankingsStack.Screen name="RankingsDetail" component={RankingsDetailScreen}/>
       <RankingsStack.Screen name="AtheleteDetail" component={AtheleteDetailScreen}/>
     </RankingsStack.Navigator>
@@ -88,7 +88,7 @@ export default function App() {
 
               if (route.name === 'Home') {
                 iconName = focused ? 'home-sharp' : 'home-outline';
-              } else if (route.name === 'RankingsTab') {
+              } else if (route.name === 'Rankings') {
                 iconName = focused ? 'list-sharp' : 'list-outline';
               } else if (route.name === 'TV') {
                 iconName = focused ? 'tv-sharp' : 'tv-outline';
@@ -104,7 +104,7 @@ export default function App() {
           })}
         >
           <Tab.Screen name="Home" component={HomeStackNavigator}/>
-          <Tab.Screen name="RankingsTab" component={RankingsStackNavigator}/>
+          <Tab.Screen name="Rankings" component={RankingsStackNavigator}/>
           <Tab.Screen name="TV" component={TVStackNavigator}/>
           <Tab.Screen name="Calendar" component={CalendarStackNavigator}/>
         </Tab.Navigator>
