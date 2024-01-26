@@ -19,11 +19,12 @@
       "supportsTablet": true
     },
     "android": {
+      "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.cgradl.skialpin"
+      "package": "at.cgradl.skiapp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
