@@ -1,0 +1,14 @@
+appId: at.cgradl.skiapp
+---
+- launchApp: "at.cgradl.skiapp"
+- tapOn: "OK"
+- assertVisible:
+    id: "tabBar-Rankings"
+- tapOn:
+    id: "tabBar-Rankings"
+- tapOn:
+    id: "segment-male"
+- tapOn:
+    id: "ranking-item-8"
+- tapOn: "1."
+- assertVisible: "AtheleteDetail"

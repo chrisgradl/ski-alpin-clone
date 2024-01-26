@@ -206,6 +206,7 @@ export default function App() {
             },
             headerShown: false,
             tabBarInactiveTintColor: '#D2EDF4',
+            tabBarTestID: `tabBar-${route.name}`
           })}
         >
           <Tab.Screen name="Home" component={HomeStackNavigator}/>

@@ -29,11 +29,13 @@ function CupRankingsScreen({ navigation, route }) {
         onValueChange={setGender}
         buttons={[
           {
+            testID: 'segment-female',
             value: "female",
             label: "DAMEN",
             checkedColor: "orange",
           },
           {
+            testID: 'segment-male',
             value: "male",
             label: "HERREN",
             checkedColor: "blue",
