@@ -1,6 +1,6 @@
-import React from 'react';
-import '@testing-library/react-native/extend-expect';
 import { render, screen, fireEvent } from '@testing-library/react-native';
+import React from 'react';
+
 
 import rankings from '../../data/cup-rankings.json';
 import CupRankingItem from '../CupRankingItem';
