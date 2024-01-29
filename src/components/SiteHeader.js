@@ -1,46 +1,37 @@
-import { Button, ScrollView, Switch, Text, Image, TextInput, StyleSheet, View, Alert, TouchableOpacity } from 'react-native';
-import React, { useState } from 'react';
+import React from 'react';
+import { ImageBackground, StyleSheet } from 'react-native';
+import { Title } from 'react-native-paper';
+import { Colors } from '../StyleConfig';
 
-export default function SiteHeader({storiesData}) {
-
-  const firstStory = storiesData.MainStories[0];
-  const firstTitle = firstStory.Title;
-  const imageUrl = firstStory?.Image?.src;
+export default function SiteHeader({ story }) {
+  if (!story) {
+    return null;
+  }
+  const firstTitle = story?.Title;
+  const imageUrl = story?.Image?.src;
 
   return (
-    <View style={styles.container}>
-      <Image
-        source={{ uri: imageUrl }}
-        style={styles.image}
-        resizeMode="center"
-      />
-      <View style={styles.textView}>
-        <Text style={styles.text}>{firstTitle}</Text>
-      </View>
-    </View>
+    <ImageBackground
+      source={{ uri: imageUrl }}
+      style={styles.image}
+      resizeMode="center"
+    >
+      <Title style={styles.text}>{firstTitle}</Title>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'relative',
-  },
   image: {
-    width: 360,
+    width: 'auto',
     height: 200,
   },
-  textView: {
-    position: 'relativ',
-    left: 0,
-    bottom: 30,
-    maxWidth: 100,
-    flexWrap: 'wrap'
-  },
   text: {
-    color: 'darkblue',
-    fontSize: 20,
+    color: Colors.highlightColor,
+    fontWeight: 'bold',
+    position: 'absolute',
+    bottom: 0,
+    right: 10,
+    left: 10,
   },
 });

@@ -1,24 +1,25 @@
-import React from "react";
+import React from 'react';
 import {
   ScrollView,
   View,
   Text,
   Button,
   ActivityIndicator,
-} from "react-native";
-import SiteHeader from "../components/SiteHeader";
-import Tvthek from "../components/tvthekvideos";
-import Stories from "../components/Stories";
-import { useStories } from "../hooks/dataHooks";
+} from 'react-native';
 
-const TvthekData = require("../data/tvthek-videos.json");
+import SiteHeader from '../components/SiteHeader';
+import Stories from '../components/Stories';
+import VideoSlider from '../components/VideoSlider';
+import { useStories, useTVThek } from '../hooks/dataHooks';
+import Spacer from '../components/Spacer';
 
 export default function HomeScreen() {
   const { data, isPending, error, refetch } = useStories();
+  const { data: tvthekData } = useTVThek();
 
   if (isPending) {
     return (
-      <View style={{ flex: 1, justifyContent: "center" }}>
+      <View style={{ flex: 1, justifyContent: 'center' }}>
         <ActivityIndicator size="large" />
       </View>
     );
@@ -26,7 +27,7 @@ export default function HomeScreen() {
 
   if (error) {
     return (
-      <View style={{ flex: 1, justifyContent: "center" }}>
+      <View style={{ flex: 1, justifyContent: 'center' }}>
         <Text>Error Loading Data: {error.message}</Text>
         <Button title="try again" onPress={refetch} />
       </View>
@@ -37,12 +38,17 @@ export default function HomeScreen() {
     return null;
   }
 
-
+  const [mainStory, second, third, ...restStories] = data.MainStories;
   return (
     <ScrollView>
-      <SiteHeader storiesData={data} />
-      <Tvthek TvthekData={TvthekData} />
-      <Stories storiesData={data} />
+      <SiteHeader story={mainStory} />
+      <Spacer />
+      <Stories stories={[second, third]} />
+      <Spacer />
+      <VideoSlider TvthekData={tvthekData} />
+      <Spacer />
+      <Stories stories={restStories} />
+      <Spacer />
     </ScrollView>
   );
 }

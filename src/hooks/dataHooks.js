@@ -1,12 +1,12 @@
-import {useQuery} from '@tanstack/react-query';
-import {Alert} from 'react-native';
+import { useQuery } from '@tanstack/react-query';
 
 const BASE_URL = 'https://appfeeds.orf.at/alpine.v2/api';
 
 const ENDPOINTS = {
   stories: `${BASE_URL}/sporton?osType=1`,
   broadcasts: `${BASE_URL}/broadcasts?view=next&top=100`,
-  cupRankingsWithId: id => `${BASE_URL}/cuprankings/${id}`,
+  cupRankingsWithId: (id) => `${BASE_URL}/cuprankings/${id}`,
+  tvThek: `${BASE_URL}/TvThek?osType=1`,
 };
 
 async function fetchFromAPI(url, init) {
@@ -17,21 +17,33 @@ async function fetchFromAPI(url, init) {
   throw Error(`failed to fetch data': ${res.status}`);
 }
 
-async function fetchCupRanking({queryKey}) {
+async function fetchCupRanking({ queryKey }) {
   const [_key, id] = queryKey;
   const url = ENDPOINTS.cupRankingsWithId(id);
   return fetchFromAPI(url);
 }
 
-
 export function useStories() {
-  return useQuery({queryKey: ['storiesData'], queryFn: () => fetchFromAPI(ENDPOINTS.stories)});
+  return useQuery({
+    queryKey: ['storiesData'],
+    queryFn: () => fetchFromAPI(ENDPOINTS.stories),
+  });
 }
 
 export function useCupRankingById(id) {
-  return useQuery({queryKey: ['cupranking', id], queryFn: fetchCupRanking});
+  return useQuery({ queryKey: ['cupranking', id], queryFn: fetchCupRanking });
 }
 
 export function useTVStreams() {
-  return useQuery({queryKey: ['tvstreams'], queryFn: () => fetchFromAPI(ENDPOINTS.broadcasts)});
+  return useQuery({
+    queryKey: ['tvstreams'],
+    queryFn: () => fetchFromAPI(ENDPOINTS.broadcasts),
+  });
+}
+
+export function useTVThek() {
+  return useQuery({
+    queryKey: ['tvthek'],
+    queryFn: () => fetchFromAPI(ENDPOINTS.tvThek),
+  });
 }

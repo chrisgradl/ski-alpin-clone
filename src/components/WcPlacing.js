@@ -1,46 +1,43 @@
 import { View, Text, SafeAreaView, StyleSheet } from 'react-native';
 
-
-function ResultsGroup({item}) {
-
+function ResultsGroup({ item }) {
   return (
     <View>
-      <Text>
-        {item.GroupName}
-      </Text>
-      <View style={{flexDirection: 'row'}}>
-        {item.PersonResults.map(i => <Text> {i.LocationName} </Text>)}
+      <Text>{item.GroupName}</Text>
+      <View style={{ flexDirection: 'row' }}>
+        {item.PersonResults.map((i) => (
+          <Text> {i.LocationName} </Text>
+        ))}
       </View>
 
-      <View style={{flexDirection: 'row'}}>
-        {item.PersonResults.map(i => <Text> {i.Rank} </Text>)}
+      <View style={{ flexDirection: 'row' }}>
+        {item.PersonResults.map((i) => (
+          <Text> {i.Rank} </Text>
+        ))}
       </View>
 
-      <View style={{flexDirection: 'row'}}>
-        {item.PersonResults.map(i => <Text> {i.EventDate} </Text>)}
+      <View style={{ flexDirection: 'row' }}>
+        {item.PersonResults.map((i) => (
+          <Text> {i.EventDate} </Text>
+        ))}
       </View>
-
     </View>
   );
-
 }
 
-
-export default function WcPlacing({data}) {
+export default function WcPlacing({ data }) {
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.headline}>
-        LETZTE DREI WELTCUP PLATZIERUNGEN
-      </Text>
+      <Text style={styles.headline}>LETZTE DREI WELTCUP PLATZIERUNGEN</Text>
 
-      <Text style={{textAlign:'center'}}>
-      {data.PersonResultGroups.map(item => <ResultsGroup item={item}/>)}
+      <Text style={{ textAlign: 'center' }}>
+        {data.PersonResultGroups.map((item) => (
+          <ResultsGroup item={item} />
+        ))}
       </Text>
-
     </SafeAreaView>
   );
 }
-
 
 const styles = StyleSheet.create({
   container: {

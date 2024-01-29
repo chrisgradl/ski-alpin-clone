@@ -1,15 +1,16 @@
-import React from "react";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
-import { SegmentedButtons } from "react-native-paper";
-import CupRankingItem from "../components/CupRankingItem";
+import React from 'react';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { SegmentedButtons } from 'react-native-paper';
+import CupRankingItem from '../components/CupRankingItem';
+import { Colors } from '../StyleConfig';
 
-const data = require("../data/cup-rankings.json");
+const data = require('../data/cup-rankings.json');
 
 function CupRankingsScreen({ navigation, route }) {
-  const [gender, setGender] = React.useState("female");
+  const [gender, setGender] = React.useState('female');
 
   const onPress = (cup) => {
-    navigation.navigate("RankingsDetail", { cup });
+    navigation.navigate('RankingsDetail', { cup });
   };
 
   return (
@@ -20,7 +21,11 @@ function CupRankingsScreen({ navigation, route }) {
             key={cup.CupRankingId}
             onPress={() => onPress(cup)}
             cup={cup}
-            color={gender === "female" ? "orange" : "blue"}
+            color={
+              gender === 'female'
+                ? Colors.femaleHighlight
+                : Colors.maleHighlight
+            }
           />
         ))}
       </ScrollView>
@@ -30,15 +35,15 @@ function CupRankingsScreen({ navigation, route }) {
         buttons={[
           {
             testID: 'segment-female',
-            value: "female",
-            label: "DAMEN",
-            checkedColor: "orange",
+            value: 'female',
+            label: 'DAMEN',
+            checkedColor: Colors.femaleHighlight,
           },
           {
             testID: 'segment-male',
-            value: "male",
-            label: "HERREN",
-            checkedColor: "blue",
+            value: 'male',
+            label: 'HERREN',
+            checkedColor: Colors.maleHighlight,
           },
         ]}
       />

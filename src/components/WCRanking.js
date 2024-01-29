@@ -1,92 +1,99 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import {StyleSheet, ScrollView, Text, View, Image, SafeAreaView, TouchableOpacity} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import {
+  StyleSheet,
+  ScrollView,
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
 
 const personPicSize = 60;
 const flagPicWidth = 25;
 
-export default function WCRanking({data}) {
-
+export default function WCRanking({ data }) {
   const navigation = useNavigation();
 
   return (
     <View>
-      <Text style={styles.titleText}>
-        {data.RankingDescription}
-      </Text>
+      <Text style={styles.titleText}>{data.RankingDescription}</Text>
       <ScrollView>
         {data.PersonRankings.map((i, index) => (
           <TouchableOpacity
             onPress={() => navigation.navigate('AtheleteDetail', { data: i })}
             style={{
-            flexDirection: 'row',
-            backgroundColor: index % 2 == 1 ? '#E9F8FB' : 'white',
-            paddingTop: 10,
-            paddingBottom: 10,
-          }}>
-            <View style={{flex: 2, justifyContent: 'center' /*, backgroundColor: 'red'*/}}>
-              <Text style={styles.rankText}>
-                {i.Rank}.
-              </Text>
+              flexDirection: 'row',
+              backgroundColor: index % 2 == 1 ? '#E9F8FB' : 'white',
+              paddingTop: 10,
+              paddingBottom: 10,
+            }}
+          >
+            <View
+              style={{
+                flex: 2,
+                justifyContent: 'center' /*, backgroundColor: 'red'*/,
+              }}
+            >
+              <Text style={styles.rankText}>{i.Rank}.</Text>
             </View>
-            <View style={{flex: 6 /*, backgroundColor: 'red'*/}}>
-
-              <View style={{flexDirection: 'column'}}>
-                <View style={{flex: 5, backgroundColor: 'red'}}>
-
-                  <View style={{flexDirection: 'row'}}>
-                    <View style={{flex: 3, paddingTop: 35}}>
-
-                      <View style={{flexDirection: 'row', verticalAlign: 'center'}}>
-
-                        <View style={{flex: 1, verticalAlign: 'center'}}>
+            <View style={{ flex: 6 /*, backgroundColor: 'red'*/ }}>
+              <View style={{ flexDirection: 'column' }}>
+                <View style={{ flex: 5, backgroundColor: 'red' }}>
+                  <View style={{ flexDirection: 'row' }}>
+                    <View style={{ flex: 3, paddingTop: 35 }}>
+                      <View
+                        style={{
+                          flexDirection: 'row',
+                          verticalAlign: 'center',
+                        }}
+                      >
+                        <View style={{ flex: 1, verticalAlign: 'center' }}>
                           <View style={styles.picFrame}>
-                            <Image style={styles.flagPic} source={{uri: i.NationImage}}/>
+                            <Image
+                              style={styles.flagPic}
+                              source={{ uri: i.NationImage }}
+                            />
                           </View>
                         </View>
-                        <View style={{flex: 1, verticalAlign: 'center'}}>
-                          <Text style={styles.flagName}>
-                            {i.NationCC3}
-                          </Text>
+                        <View style={{ flex: 1, verticalAlign: 'center' }}>
+                          <Text style={styles.flagName}>{i.NationCC3}</Text>
                         </View>
-
                       </View>
-
-
                     </View>
 
-                    <View style={{flex: 3 /*, backgroundColor: 'red'*/}}>
+                    <View style={{ flex: 3 /*, backgroundColor: 'red'*/ }}>
                       <View style={styles.picFrame}>
-                        <Image style={styles.personPic} source={{uri: i.PersonImage}}/>
+                        <Image
+                          style={styles.personPic}
+                          source={{ uri: i.PersonImage }}
+                        />
                       </View>
                     </View>
 
-                    <View style={{flex: 3 /*, backgroundColor: 'red'*/}}>
-
-                    </View>
+                    <View
+                      style={{ flex: 3 /*, backgroundColor: 'red'*/ }}
+                    ></View>
                   </View>
                 </View>
 
-
-                <View style={{flex: 2 /*, backgroundColor: 'red'*/}}>
+                <View style={{ flex: 2 /*, backgroundColor: 'red'*/ }}>
                   <Text style={styles.nameText}>
-                    {i.FirstName} <Text style={{fontWeight: 'bold'}}>{i.LastName}</Text>
+                    {i.FirstName}{' '}
+                    <Text style={{ fontWeight: 'bold' }}>{i.LastName}</Text>
                   </Text>
                 </View>
               </View>
-
             </View>
 
-            <View style={{flex: 2, justifyContent: 'center'}}>
-              <Text style={styles.valueText}>
-                {i.Value}
-              </Text>
+            <View style={{ flex: 2, justifyContent: 'center' }}>
+              <Text style={styles.valueText}>{i.Value}</Text>
             </View>
-          </TouchableOpacity>))}
+          </TouchableOpacity>
+        ))}
       </ScrollView>
     </View>
   );
-
 }
 
 const styles = StyleSheet.create({
@@ -165,7 +172,7 @@ const styles = StyleSheet.create({
   flagPic: {
     //Originalgroeße 256*170
     width: flagPicWidth,
-    height: 170 * flagPicWidth / 256,
+    height: (170 * flagPicWidth) / 256,
   },
   personPic: {
     //Originalgroeße 256*256
@@ -175,7 +182,6 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     borderWidth: 3,
     borderColor: '#439AFF',
-
   },
   picFrame: {
     alignItems: 'center',
@@ -185,6 +191,5 @@ const styles = StyleSheet.create({
     //flexDirection: "row",
     //height: 40,
     //alignItems:"center",
-
   },
 });

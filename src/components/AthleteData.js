@@ -1,30 +1,21 @@
-import {View, Text, SafeAreaView, StyleSheet} from 'react-native';
+import { View, Text, SafeAreaView, StyleSheet } from 'react-native';
 
-
-export default function AtheleteData({data}) {
+export default function AtheleteData({ data }) {
   return (
     <SafeAreaView style={styles.container}>
-
       <Text style={styles.text}>
         {data.FirstName} {data.LastName}
       </Text>
 
-      <Text style={styles.paragraph}>
-        Geb: {data.BirthDay}
-      </Text>
+      <Text style={styles.paragraph}>Geb: {data.BirthDay}</Text>
 
-      <Text style={styles.text}>
-        {data.Age} Jahre
-      </Text>
+      <Text style={styles.text}>{data.Age} Jahre</Text>
 
-      <Text style={styles.text}>
-        {data.BirthPlace}
-      </Text>
+      <Text style={styles.text}>{data.BirthPlace}</Text>
 
       <Text style={styles.paragraph}>
         Weltcup: {data.WcRank}. Platz / {data.WcPoints} Punkte
       </Text>
-
     </SafeAreaView>
   );
 }
