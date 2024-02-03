@@ -40,6 +40,7 @@ function HomeStackNavigator({ navigation, route }) {
     <HomeStack.Navigator>
       <HomeStack.Screen
         options={{
+          title: '',
           headerLeft: (props) => (
             <Ionicons
               onPress={() => navigation.navigate('Settings')}
@@ -54,6 +55,9 @@ function HomeStackNavigator({ navigation, route }) {
       />
       <HomeStack.Screen
         name="StoryDetailScreen"
+        options={({ route }) => ({
+          title: route.params?.story?.Title ?? '',
+        })}
         component={StoryDetailScreen}
       />
     </HomeStack.Navigator>

@@ -15,7 +15,7 @@ export default function SiteHeader({ story }) {
   return (
     <Pressable
       onPress={() =>
-        navigation.navigate('StoryDetailScreen', { uri: story.OrfOnHref })
+        navigation.navigate('StoryDetailScreen', { story })
       }
     >
       <ImageBackground

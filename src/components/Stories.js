@@ -13,7 +13,7 @@ export default function Stories({ stories }) {
           key={index}
           style={styles.card}
           onPress={() =>
-            navigation.navigate('StoryDetailScreen', { uri: item.OrfOnHref })
+            navigation.navigate('StoryDetailScreen', { story: item })
           }
         >
           <Card.Cover source={{ uri: item.Image.src }} style={styles.image} />
