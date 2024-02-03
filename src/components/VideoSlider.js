@@ -75,7 +75,6 @@ export default function VideoSlider({ TvthekData }) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'white',
     flexDirection: 'row',
   },
 });

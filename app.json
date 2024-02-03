@@ -5,7 +5,7 @@
     "slug": "ski-alpin",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/FIS-logo.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
@@ -20,11 +20,8 @@
       "bundleIdentifier": "at.cgradl.skiapp"
     },
     "android": {
+      "icon": "./assets/FIS-logo.png",
       "googleServicesFile": "./google-services.json",
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      },
       "package": "at.cgradl.skiapp"
     },
     "web": {

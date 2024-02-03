@@ -3,6 +3,8 @@ const Colors = {
   highlightColor: '#00204B',
   maleHighlight: '#469AFD',
   femaleHighlight: '#FC822F',
+  background: '#EFEFEF',
+
 };
 
 const Sizes = {

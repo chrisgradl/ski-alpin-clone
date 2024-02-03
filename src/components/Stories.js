@@ -1,15 +1,24 @@
 import { StyleSheet, View } from 'react-native';
 import { Card } from 'react-native-paper';
 import { Colors } from '../StyleConfig';
+import { useNavigation } from '@react-navigation/native';
 
 export default function Stories({ stories }) {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
       {stories.map((item, index) => (
-        <Card key={index} style={styles.card}>
+        <Card
+          key={index}
+          style={styles.card}
+          onPress={() =>
+            navigation.navigate('StoryDetailScreen', { uri: item.OrfOnHref })
+          }
+        >
           <Card.Cover source={{ uri: item.Image.src }} style={styles.image} />
           <Card.Title
-            titleStyle={{ fontWeight: 'bold', color: Colors.highlightColor }}
+            titleStyle={{ fontWeight: 'bold' }}
             title={item.Title}
             titleNumberOfLines={3}
           />

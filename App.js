@@ -1,20 +1,17 @@
-import Ionicons from '@expo/vector-icons/Ionicons';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import * as Device from 'expo-device';
 import * as Linking from 'expo-linking';
 import * as Notifications from 'expo-notifications';
 import * as React from 'react';
-import { Alert, Platform } from 'react-native';
+import { Platform } from 'react-native';
+import { PaperProvider } from 'react-native-paper';
 
-import AtheleteDetailScreen from './src/screens/AtheleteDetailScreen';
-import CalendarScreen from './src/screens/CalendarScreen';
-import CupRankingsScreen from './src/screens/CupRankingsScreen';
-import HomeScreen from './src/screens/HomeScreen';
-import RankingsDetailScreen from './src/screens/RankingsDetailScreen';
-import TVScreen from './src/screens/TVScreen';
+import { CombinedDarkTheme, CombinedDefaultTheme } from './src/AppTheming';
+import { PreferencesContext } from './src/context/PreferencesContext';
+import SettingsScreen from './src/screens/SettingsScreen';
+import TabNavigator from './src/TabNavigation';
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -24,77 +21,7 @@ Notifications.setNotificationHandler({
   }),
 });
 
-const Tab = createBottomTabNavigator();
-
-function HeaderSettingsButton({ tintColor }) {
-  return (
-    <Ionicons name="settings-sharp" color={tintColor} onPress={() => {}} />
-  );
-}
-
-const customTheme = {
-  darkBlueColor: '#376191',
-};
-
-export { customTheme };
-
-const MyTheme = {
-  ...DefaultTheme,
-  colors: {
-    ...DefaultTheme.colors,
-    background: '#EFEFEF',
-    card: '#27B6DE',
-    primary: 'white',
-    text: 'white',
-  },
-};
-
-const RankingsStack = createNativeStackNavigator();
-function RankingsStackNavigator() {
-  return (
-    <RankingsStack.Navigator>
-      <RankingsStack.Screen
-        name="RankingsScreen"
-        component={CupRankingsScreen}
-      />
-      <RankingsStack.Screen
-        name="RankingsDetail"
-        component={RankingsDetailScreen}
-      />
-      <RankingsStack.Screen
-        name="AtheleteDetail"
-        component={AtheleteDetailScreen}
-      />
-    </RankingsStack.Navigator>
-  );
-}
-
-const HomeStack = createNativeStackNavigator();
-function HomeStackNavigator() {
-  return (
-    <HomeStack.Navigator>
-      <HomeStack.Screen name="HomeScreen" component={HomeScreen} />
-    </HomeStack.Navigator>
-  );
-}
-
-const TVStack = createNativeStackNavigator();
-function TVStackNavigator() {
-  return (
-    <TVStack.Navigator>
-      <TVStack.Screen name="TVScreen" component={TVScreen} />
-    </TVStack.Navigator>
-  );
-}
-
-const CalendarStack = createNativeStackNavigator();
-function CalendarStackNavigator() {
-  return (
-    <CalendarStack.Navigator>
-      <CalendarStack.Screen name="CalendarScreen" component={CalendarScreen} />
-    </CalendarStack.Navigator>
-  );
-}
+const RootStack = createNativeStackNavigator();
 
 const rankingsDeeplink = `skialpine://Rankings/RankingsDetail?CupRankingId=5`;
 const tvDeeplink = `skialpine://TV`;
@@ -147,7 +74,7 @@ async function registerForPushNotificationsAsync() {
       finalStatus = status;
     }
     if (finalStatus !== 'granted') {
-      alert('Failed to get push token for push notification!');
+      //alert('Failed to get push token for push notification!');
       return;
     }
 
@@ -162,31 +89,43 @@ async function registerForPushNotificationsAsync() {
     //   projectId: Constants.expoConfig.extra.eas.projectId,
     // });
   } else {
-    alert('Must use physical device for Push Notifications');
+    // alert('Must use physical device for Push Notifications');
   }
 }
 
 export default function App() {
-  const [expoPushToken, setExpoPushToken] = React.useState('');
-  const [notification, setNotification] = React.useState(false);
   const notificationListener = React.useRef();
   const responseListener = React.useRef();
+  const [isThemeDark, setIsThemeDark] = React.useState(false);
+
+  const theme = isThemeDark ? CombinedDarkTheme : CombinedDefaultTheme;
+  const toggleTheme = React.useCallback(() => {
+    return setIsThemeDark(!isThemeDark);
+  }, [isThemeDark]);
+
+  const preferences = React.useMemo(
+    () => ({
+      toggleTheme,
+      isThemeDark,
+    }),
+    [toggleTheme, isThemeDark],
+  );
 
   React.useEffect(() => {
-    registerForPushNotificationsAsync().then((token) =>
-      setExpoPushToken(token),
-    );
+    registerForPushNotificationsAsync()
+      .then((token) => console.log(token))
+      .catch((e) => console.log(e));
 
     notificationListener.current =
       Notifications.addNotificationReceivedListener((notification) => {
         setNotification(notification);
-        Alert.alert(JSON.stringify(notification));
+        //Alert.alert(JSON.stringify(notification));
       });
 
     responseListener.current =
       Notifications.addNotificationResponseReceivedListener((response) => {
         console.log(response);
-        Alert.alert(JSON.stringify(notification));
+        //Alert.alert(JSON.stringify(notification));
       });
 
     return () => {
@@ -198,37 +137,26 @@ export default function App() {
   }, []);
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <NavigationContainer linking={linking} theme={MyTheme}>
-        <Tab.Navigator
-          screenOptions={({ route }) => ({
-            tabBarIcon: ({ focused, color, size }) => {
-              let iconName;
-
-              if (route.name === 'Home') {
-                iconName = focused ? 'home-sharp' : 'home-outline';
-              } else if (route.name === 'Rankings') {
-                iconName = focused ? 'list-sharp' : 'list-outline';
-              } else if (route.name === 'TV') {
-                iconName = focused ? 'tv-sharp' : 'tv-outline';
-              } else if (route.name === 'Calendar') {
-                iconName = focused ? 'calendar-sharp' : 'calendar-outline';
-              }
-
-              // You can return any component that you like here!
-              return <Ionicons name={iconName} size={size} color={color} />;
-            },
-            headerShown: false,
-            tabBarInactiveTintColor: '#D2EDF4',
-            tabBarTestID: `tabBar-${route.name}`,
-          })}
-        >
-          <Tab.Screen name="Home" component={HomeStackNavigator} />
-          <Tab.Screen name="Rankings" component={RankingsStackNavigator} />
-          <Tab.Screen name="TV" component={TVStackNavigator} />
-          <Tab.Screen name="Calendar" component={CalendarStackNavigator} />
-        </Tab.Navigator>
-      </NavigationContainer>
-    </QueryClientProvider>
+    <PreferencesContext.Provider value={preferences}>
+      <QueryClientProvider client={queryClient}>
+        <PaperProvider theme={theme}>
+          <NavigationContainer linking={linking} theme={theme}>
+            <RootStack.Navigator>
+              <RootStack.Group screenOptions={{ headerShown: false }}>
+                <RootStack.Screen name="Tab" component={TabNavigator} />
+              </RootStack.Group>
+              <RootStack.Group
+                screenOptions={{
+                  presentation: 'modal',
+                  title: 'Einstellungen',
+                }}
+              >
+                <RootStack.Screen name="Settings" component={SettingsScreen} />
+              </RootStack.Group>
+            </RootStack.Navigator>
+          </NavigationContainer>
+        </PaperProvider>
+      </QueryClientProvider>
+    </PreferencesContext.Provider>
   );
 }
