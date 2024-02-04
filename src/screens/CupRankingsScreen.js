@@ -3,33 +3,53 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SegmentedButtons } from 'react-native-paper';
 import CupRankingItem from '../components/CupRankingItem';
 import { Colors } from '../StyleConfig';
-
-const data = require('../data/cup-rankings.json');
+import Spacer from '../components/Spacer';
+import { useCupRankingsByGender } from '../hooks/dataHooks';
 
 function CupRankingsScreen({ navigation, route }) {
   const [gender, setGender] = React.useState('female');
+  const { data, isPending, error, refetch } = useCupRankingsByGender(
+    gender === 'female' ? 2 : 1,
+  );
 
   const onPress = (cup) => {
     navigation.navigate('RankingsDetail', { cup });
   };
 
+  React.useEffect(() => {
+    refetch();
+  }, [gender, refetch()]);
+
+  const nationsCup = data?.find((s) => s.CupRankingId === 1);
+
   return (
-    <View style={{ flex: 1, padding: 16 }}>
+    <View style={{ flex: 1, paddingVertical: 16 }}>
       <ScrollView>
-        {data.map((cup) => (
-          <CupRankingItem
-            key={cup.CupRankingId}
-            onPress={() => onPress(cup)}
-            cup={cup}
-            color={
-              gender === 'female'
-                ? Colors.femaleHighlight
-                : Colors.maleHighlight
-            }
-          />
-        ))}
+        {data
+          ?.filter((s) => s.CupRankingId !== 1)
+          .map((cup) => (
+            <CupRankingItem
+              key={cup.CupRankingId}
+              onPress={() => onPress(cup)}
+              cup={cup}
+              color={
+                gender === 'female'
+                  ? Colors.femaleHighlight
+                  : Colors.maleHighlight
+              }
+            />
+          ))}
+        <Spacer size={24} />
+        <CupRankingItem
+          onPress={() => onPress(nationsCup)}
+          cup={nationsCup}
+          color={
+            gender === 'female' ? Colors.femaleHighlight : Colors.maleHighlight
+          }
+        />
       </ScrollView>
       <SegmentedButtons
+        style={{ marginHorizontal: 16 }}
         value={gender}
         onValueChange={setGender}
         buttons={[

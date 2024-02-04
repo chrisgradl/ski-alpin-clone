@@ -8,12 +8,37 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
+import { Paragraph, useTheme } from "react-native-paper";
 
 const personPicSize = 60;
 const flagPicWidth = 25;
 
+export function CountryInfo({ data }) {
+  return (
+    <View
+      style={{
+        flexDirection: 'row',
+        verticalAlign: 'center',
+      }}
+    >
+      <View style={{ flex: 1, verticalAlign: 'center' }}>
+        <View style={styles.picFrame}>
+          <Image style={styles.flagPic} source={{ uri: data.NationImage }} />
+        </View>
+      </View>
+      <View style={{ flex: 1, verticalAlign: 'center' }}>
+        <Paragraph style={styles.flagName}>{data.NationCC3}</Paragraph>
+      </View>
+    </View>
+  );
+}
+
 export default function WCRanking({ data }) {
   const navigation = useNavigation();
+
+  const {
+    colors: { surface, surfaceVariant },
+  } = useTheme();
 
   return (
     <View>
@@ -24,7 +49,7 @@ export default function WCRanking({ data }) {
             onPress={() => navigation.navigate('AtheleteDetail', { data: i })}
             style={{
               flexDirection: 'row',
-              backgroundColor: index % 2 == 1 ? '#E9F8FB' : 'white',
+              backgroundColor: index % 2 == 1 ? surfaceVariant : surface,
               paddingTop: 10,
               paddingBottom: 10,
             }}
@@ -32,34 +57,17 @@ export default function WCRanking({ data }) {
             <View
               style={{
                 flex: 2,
-                justifyContent: 'center' /*, backgroundColor: 'red'*/,
+                justifyContent: 'center',
               }}
             >
-              <Text style={styles.rankText}>{i.Rank}.</Text>
+              <Paragraph style={styles.rankText}>{i.Rank}.</Paragraph>
             </View>
-            <View style={{ flex: 6 /*, backgroundColor: 'red'*/ }}>
+            <View style={{ flex: 6 }}>
               <View style={{ flexDirection: 'column' }}>
-                <View style={{ flex: 5, backgroundColor: 'red' }}>
+                <View style={{ flex: 5 }}>
                   <View style={{ flexDirection: 'row' }}>
                     <View style={{ flex: 3, paddingTop: 35 }}>
-                      <View
-                        style={{
-                          flexDirection: 'row',
-                          verticalAlign: 'center',
-                        }}
-                      >
-                        <View style={{ flex: 1, verticalAlign: 'center' }}>
-                          <View style={styles.picFrame}>
-                            <Image
-                              style={styles.flagPic}
-                              source={{ uri: i.NationImage }}
-                            />
-                          </View>
-                        </View>
-                        <View style={{ flex: 1, verticalAlign: 'center' }}>
-                          <Text style={styles.flagName}>{i.NationCC3}</Text>
-                        </View>
-                      </View>
+                      <CountryInfo data={i} />
                     </View>
 
                     <View style={{ flex: 3 /*, backgroundColor: 'red'*/ }}>
@@ -78,16 +86,16 @@ export default function WCRanking({ data }) {
                 </View>
 
                 <View style={{ flex: 2 /*, backgroundColor: 'red'*/ }}>
-                  <Text style={styles.nameText}>
+                  <Paragraph style={styles.nameText}>
                     {i.FirstName}{' '}
                     <Text style={{ fontWeight: 'bold' }}>{i.LastName}</Text>
-                  </Text>
+                  </Paragraph>
                 </View>
               </View>
             </View>
 
             <View style={{ flex: 2, justifyContent: 'center' }}>
-              <Text style={styles.valueText}>{i.Value}</Text>
+              <Paragraph style={styles.valueText}>{i.Value}</Paragraph>
             </View>
           </TouchableOpacity>
         ))}
@@ -116,10 +124,9 @@ const styles = StyleSheet.create({
     //justifyContent: 'center',
   },
   rankText: {
-    color: '#808080',
-    margin: 2,
+    lineHeight: 30,
     //padding: 2,
-    fontSize: 32,
+    fontSize: 30,
     //fontWeight: 'bold',
     textAlign: 'center',
     verticalAlign: 'center',
@@ -127,7 +134,6 @@ const styles = StyleSheet.create({
     //justifyContent: 'center',
   },
   valueText: {
-    color: '#808080',
     margin: 2,
     //padding: 2,
     fontSize: 20,
@@ -138,7 +144,6 @@ const styles = StyleSheet.create({
     //justifyContent: 'center',
   },
   nameText: {
-    color: '#00204B',
     //margin: 2,
     //padding: 2,
     fontSize: 18,
@@ -149,15 +154,9 @@ const styles = StyleSheet.create({
     //justifyContent: 'center',
   },
   flagName: {
-    color: '#00204B',
-    //margin: 2,
-    //padding: 2,
     fontSize: 12,
     fontWeight: 'bold',
     textAlign: 'center',
-    verticalAlign: 'center',
-    //alignItems: 'center',
-    //justifyContent: 'center',
   },
   paragraph: {
     //margin: 2,

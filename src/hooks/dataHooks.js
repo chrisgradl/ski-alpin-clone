@@ -7,6 +7,9 @@ const ENDPOINTS = {
   broadcasts: `${BASE_URL}/broadcasts?view=next&top=100`,
   cupRankingsWithId: (id) => `${BASE_URL}/cuprankings/${id}`,
   tvThek: `${BASE_URL}/TvThek?osType=1`,
+  cupRankingsByGender: (id) => `${BASE_URL}/cuprankings?genderid=${id}`,
+  athleteById: (id) => `${BASE_URL}/person/${id}`,
+  events: `${BASE_URL}/sportevents?view=grouped`,
 };
 
 async function fetchFromAPI(url, init) {
@@ -23,6 +26,18 @@ async function fetchCupRanking({ queryKey }) {
   return fetchFromAPI(url);
 }
 
+async function fetchCupRankings({ queryKey }) {
+  const [_key, id] = queryKey;
+  const url = ENDPOINTS.cupRankingsByGender(id);
+  return fetchFromAPI(url);
+}
+
+async function fetchPerson({ queryKey }) {
+  const [_key, id] = queryKey;
+  const url = ENDPOINTS.athleteById(id);
+  return fetchFromAPI(url);
+}
+
 export function useStories() {
   return useQuery({
     queryKey: ['storiesData'],
@@ -32,6 +47,14 @@ export function useStories() {
 
 export function useCupRankingById(id) {
   return useQuery({ queryKey: ['cupranking', id], queryFn: fetchCupRanking });
+}
+
+export function useCupRankingsByGender(id) {
+  return useQuery({ queryKey: ['cuprankings', id], queryFn: fetchCupRankings });
+}
+
+export function usePersonBy(id) {
+  return useQuery({ queryKey: ['person', id], queryFn: fetchPerson });
 }
 
 export function useTVStreams() {
@@ -45,5 +68,13 @@ export function useTVThek() {
   return useQuery({
     queryKey: ['tvthek'],
     queryFn: () => fetchFromAPI(ENDPOINTS.tvThek),
+  });
+}
+
+export function useEvents(options) {
+  return useQuery({
+    queryKey: ['events'],
+    queryFn: () => fetchFromAPI(ENDPOINTS.events),
+    ...options,
   });
 }

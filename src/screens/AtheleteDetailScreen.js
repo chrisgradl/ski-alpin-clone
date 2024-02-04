@@ -1,20 +1,28 @@
 import React from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
-import AtheletePicture from '../components/AthletePicture';
-import WCRanking from '../components/WCRanking';
+import AtheleteInfo from '../components/AthleteInfo';
 import WcPlacing from '../components/WcPlacing';
 import AtheleteData from '../components/AthleteData';
+import { usePersonBy } from '../hooks/dataHooks';
+import Spacer from '../components/Spacer';
+import { Divider } from 'react-native-paper';
 
 const data = require('../data/athelete-details.json');
 
 export default function AtheleteDetailScreen({ navigation, route }) {
-  const { data } = route.params;
+  console.log(route.params);
+
+  const { data, refetch } = usePersonBy(route.params?.data?.PersonId);
+
+  if (!data) {
+    return null;
+  }
 
   return (
     <ScrollView>
-      <AtheletePicture data={data} />
-      <AtheleteData data={data} />
-      {/*<WcPlacing data={data}/>*/}
+      <AtheleteInfo data={data} />
+      <Spacer size={24} />
+      <WcPlacing data={data} />
     </ScrollView>
   );
 }

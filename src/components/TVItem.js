@@ -1,31 +1,68 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
-import { Card } from 'react-native-paper';
+import {
+  Caption,
+  Card,
+  Paragraph,
+  Subheading,
+  Title,
+  useTheme,
+} from 'react-native-paper';
+import { formatTime } from "../Util";
 
 export default function TVItem({ item }) {
+  const {
+    colors: { primary, onPrimary },
+  } = useTheme();
+
   return (
-    <Card style={styles.card}>
-      <Card.Content>
-        <View style={styles.textContainer}>
-          <View style={styles.timeCircle}>
-            <Text style={styles.subtitle}>{formatTime(item.StartBC)}</Text>
-          </View>
-          <Text style={styles.title}>{item.Title}</Text>
+    <Card disabled={item.ScheduleState === 'Canceled'} style={{ margin: 12, marginVertical: 6, padding: 12 }}>
+      <View
+        style={{
+          alignItems: 'center',
+        }}
+      >
+        <Paragraph>{item.SportEventBaseInfo.CompetitionName}</Paragraph>
+      </View>
+      <View style={{ flexDirection: 'row', flex: 1 }}>
+        <View
+          style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+        >
+          <Image
+            style={{ width: 30, aspectRatio: 1, resizeMode: 'contain' }}
+            source={{ uri: item.SportEventBaseInfo.LocationNationImage }}
+          />
+          <Caption>{item.SportEventBaseInfo.LocationName}</Caption>
         </View>
-        <Image style={styles.image} source={{ uri: item.ChannelImagePath }} />
-      </Card.Content>
+        <View
+          style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+        >
+          <View style={[styles.timeCircle, { backgroundColor: primary }]}>
+            <Paragraph style={{ color: onPrimary }}>
+              {formatTime(item.StartBC)}
+            </Paragraph>
+          </View>
+        </View>
+        <View
+          style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+        >
+          <Image style={styles.image} source={{ uri: item.ChannelImagePath }} />
+        </View>
+      </View>
+
+      <View style={styles.textContainer}>
+        <Title style={{ fontWeight: 'bold', textAlign: 'center' }}>
+          {item.Title}
+        </Title>
+        <Subheading>
+          Start: {formatTime(item.SportEventBaseInfo.EventDate)}
+        </Subheading>
+      </View>
     </Card>
   );
 }
 
-// Hilfsfunktion zum Formatieren der Uhrzeit
-const formatTime = (timeString) => {
-  const date = new Date(timeString);
-  return date.toLocaleTimeString('de-DE', {
-    hour: '2-digit',
-    minute: '2-digit',
-  });
-};
+
 
 const styles = StyleSheet.create({
   card: {
@@ -33,37 +70,18 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     alignItems: 'center',
-  },
-  title: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: 'black',
-    marginTop: 5,
+    paddingBottom: 12,
   },
   image: {
-    width: '30%',
-    height: 19,
-    resizeMode: 'cover',
-    marginTop: 4,
-  },
-  croupDescription: {
-    flexDirection: 'column',
-    justifyContent: 'space-around',
-    backgroundColor: 'darkblue',
-    color: 'white',
-    alignItems: 'center',
+    aspectRatio: 1,
+    width: 65,
+    resizeMode: 'contain',
   },
   timeCircle: {
-    width: 40,
-    height: 40,
-    borderRadius: 25, // Halbe Breite und Höhe für einen Kreis
-    backgroundColor: 'darkblue',
+    width: 50,
+    height: 50,
+    borderRadius: 25,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 4,
-  },
-  subtitle: {
-    fontSize: 14,
-    color: 'white', // Textfarbe im Kreis
   },
 });

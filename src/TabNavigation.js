@@ -16,16 +16,19 @@ const RankingsStack = createNativeStackNavigator();
 
 function RankingsStackNavigator() {
   return (
-    <RankingsStack.Navigator>
+    <RankingsStack.Navigator screenOptions={{ headerBackTitleVisible: false }}>
       <RankingsStack.Screen
+        options={{ title: 'WERTUNGEN' }}
         name="RankingsScreen"
         component={CupRankingsScreen}
       />
       <RankingsStack.Screen
+        options={({ route }) => ({ title: route.params.cup.CupRankingName })}
         name="RankingsDetail"
         component={RankingsDetailScreen}
       />
       <RankingsStack.Screen
+        options={({ route }) => ({ title: `${route.params.data.FirstName} ${route.params.data.LastName}` })}
         name="AtheleteDetail"
         component={AtheleteDetailScreen}
       />
@@ -108,10 +111,22 @@ export default function TabNavigator() {
         tabBarTestID: `tabBar-${route.name}`,
       })}
     >
-      <Tab.Screen name="Home" component={HomeStackNavigator} />
-      <Tab.Screen name="Rankings" component={RankingsStackNavigator} />
+      <Tab.Screen
+        options={{ title: 'Start' }}
+        name="Home"
+        component={HomeStackNavigator}
+      />
+      <Tab.Screen
+        options={{ title: 'Wertungen' }}
+        name="Rankings"
+        component={RankingsStackNavigator}
+      />
       <Tab.Screen name="TV" component={TVStackNavigator} />
-      <Tab.Screen name="Calendar" component={CalendarStackNavigator} />
+      <Tab.Screen
+        options={{ title: 'Termine' }}
+        name="Calendar"
+        component={CalendarStackNavigator}
+      />
     </Tab.Navigator>
   );
 }
