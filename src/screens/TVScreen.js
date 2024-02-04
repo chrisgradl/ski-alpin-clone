@@ -31,7 +31,7 @@ export function SectionItem({ item }) {
     <>
       <SectionHeader title={item.ProgramDateString} primaryColor={false} />
       {item.Items.map((i) => (
-        <TVItem item={i} key={i} />
+        <TVItem item={i} key={i.Id} />
       ))}
       <Spacer />
     </>
