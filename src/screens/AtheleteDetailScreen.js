@@ -1,21 +1,24 @@
 import React from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
-import AtheleteInfo from '../components/AthleteInfo';
-import WcPlacing from '../components/WcPlacing';
-import AtheleteData from '../components/AthleteData';
-import { usePersonBy } from '../hooks/dataHooks';
-import Spacer from '../components/Spacer';
-import { Divider } from 'react-native-paper';
+import { ActivityIndicator, ScrollView, View } from 'react-native';
 
-const data = require('../data/athelete-details.json');
+import AtheleteInfo from '../components/AthleteInfo';
+import ErrorBanner from '../components/ErrorBanner';
+import LoadingView from '../components/LoadingView';
+import Spacer from '../components/Spacer';
+import WcPlacing from '../components/WcPlacing';
+import { usePersonBy } from '../hooks/dataHooks';
 
 export default function AtheleteDetailScreen({ navigation, route }) {
-  console.log(route.params);
+  const { data, refetch, error, isPending } = usePersonBy(
+    route.params?.data?.PersonId ?? route.params?.id,
+  );
 
-  const { data, refetch } = usePersonBy(route.params?.data?.PersonId);
+  if (isPending) {
+    return <LoadingView />;
+  }
 
-  if (!data) {
-    return null;
+  if (error) {
+    return <ErrorBanner onPress={refetch} visible={error} />;
   }
 
   return (

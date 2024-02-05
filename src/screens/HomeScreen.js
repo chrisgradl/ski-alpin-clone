@@ -1,46 +1,44 @@
 import React from 'react';
 import {
+  ActivityIndicator,
+  RefreshControl,
   ScrollView,
   View,
-  Text,
-  Button,
-  ActivityIndicator,
 } from 'react-native';
 
+import ErrorBanner from '../components/ErrorBanner';
+import LoadingView from '../components/LoadingView';
 import SiteHeader from '../components/SiteHeader';
+import Spacer from '../components/Spacer';
 import Stories from '../components/Stories';
 import VideoSlider from '../components/VideoSlider';
 import { useStories, useTVThek } from '../hooks/dataHooks';
-import Spacer from '../components/Spacer';
+import { useRefreshByUser } from '../hooks/useRefreshByUser';
 
 export default function HomeScreen() {
   const { data, isPending, error, refetch } = useStories();
   const { data: tvthekData } = useTVThek();
+  const { refetchByUser, isRefetchingByUser } = useRefreshByUser(refetch);
 
   if (isPending) {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center' }}>
-        <ActivityIndicator size="large" />
-      </View>
-    );
+    return <LoadingView />;
   }
 
   if (error) {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center' }}>
-        <Text>Error Loading Data: {error.message}</Text>
-        <Button title="try again" onPress={refetch} />
-      </View>
-    );
+    return <ErrorBanner onPress={refetch} visible={error} />;
   }
 
-  if (!data) {
-    return null;
-  }
-
-  const [mainStory, second, third, ...restStories] = data.MainStories;
+  const [mainStory, second, third, ...restStories] = data?.MainStories;
   return (
-    <ScrollView>
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      refreshControl={
+        <RefreshControl
+          refreshing={isRefetchingByUser}
+          onRefresh={refetchByUser}
+        />
+      }
+    >
       <SiteHeader story={mainStory} />
       <Spacer />
       <Stories stories={[second, third]} />

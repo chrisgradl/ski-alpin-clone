@@ -4,7 +4,6 @@ const Colors = {
   maleHighlight: '#469AFD',
   femaleHighlight: '#FC822F',
   background: '#EFEFEF',
-
 };
 
 const Sizes = {

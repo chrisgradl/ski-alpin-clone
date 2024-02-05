@@ -1,11 +1,14 @@
-import { SectionList, View } from 'react-native';
+import { RefreshControl, SectionList, View } from 'react-native';
 import { Subheading, useTheme } from 'react-native-paper';
 
 import Spacer from '../components/Spacer';
 import TVItem from '../components/TVItem';
 import { useTVStreams } from '../hooks/dataHooks';
+import { useRefreshByUser } from '../hooks/useRefreshByUser';
+import ErrorBanner from "../components/ErrorBanner";
+import React from "react";
 
-const mapEvents = (d) => d.map((d) => ({ ...d, data: d.DayGroups }));
+const mapEvents = (d) => d?.map((d) => ({ ...d, data: d?.DayGroups })) ?? [];
 
 export function SectionHeader({ title, primaryColor = true }) {
   const {
@@ -40,15 +43,22 @@ export function SectionItem({ item }) {
 
 export default function TVScreen() {
   const { refetch, error, isPending, data } = useTVStreams();
+  const { isRefetchingByUser, refetchByUser } = useRefreshByUser(refetch);
 
-  if (!data) {
-    return null;
+  if (error) {
+    return <ErrorBanner onPress={refetch} visible={error} />;
   }
 
   const flatData = mapEvents(data);
 
   return (
     <SectionList
+      refreshControl={
+        <RefreshControl
+          refreshing={isRefetchingByUser || isPending}
+          onRefresh={refetchByUser}
+        />
+      }
       sections={flatData}
       renderSectionHeader={({ section }) => (
         <SectionHeader title={section.GroupDescription} />

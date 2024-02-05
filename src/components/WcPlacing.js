@@ -21,13 +21,14 @@ function ResultsGroup({ item }) {
 }
 
 export default function WcPlacing({ data }) {
+  console.log(data);
   return (
     <>
       <Subheading style={{ paddingHorizontal: 12 }}>
         LETZTE DREI WELTCUP PLATZIERUNGEN
       </Subheading>
-      {data.PersonResultGroups.map((item) => (
-        <ResultsGroup item={item} />
+      {data.PersonResultGroups.map((item, index) => (
+        <ResultsGroup item={item} key={item.GroupName + index} />
       ))}
     </>
   );

@@ -1,11 +1,11 @@
-import { ActivityIndicator, Alert, Button, Text, View } from 'react-native';
-import WCRanking from '../components/WCRanking';
-import { useCupRankingById } from '../hooks/dataHooks';
 import React from 'react';
 
-const data = require('../data/ranking-slalom.json');
+import ErrorBanner from '../components/ErrorBanner';
+import LoadingView from '../components/LoadingView';
+import WCRanking from '../components/WCRanking';
+import { useCupRankingById } from '../hooks/dataHooks';
 
-export default function RankingsDetailScreen({ navigation, route }) {
+export default function RankingsDetailScreen({ route }) {
   const { cup, CupRankingId } = route.params;
 
   const { data, isPending, error, refetch } = useCupRankingById(
@@ -13,29 +13,12 @@ export default function RankingsDetailScreen({ navigation, route }) {
   );
 
   if (isPending) {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center' }}>
-        <ActivityIndicator size="large" />
-      </View>
-    );
+    return <LoadingView />;
   }
 
   if (error) {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center' }}>
-        <Text>Error Loading Data: {error.message}</Text>
-        <Button title="try again" onPress={refetch} />
-      </View>
-    );
+    return <ErrorBanner onPress={refetch} visible={error} />;
   }
 
-  if (!data) {
-    return null;
-  }
-
-  return (
-    <>
-      <WCRanking data={data} />
-    </>
-  );
+  return <WCRanking data={data} />;
 }

@@ -1,6 +1,6 @@
 import React from 'react';
-import { View } from 'react-native';
 import { Divider, List, Switch } from 'react-native-paper';
+
 import { PreferencesContext } from '../context/PreferencesContext';
 
 const SettingsScreen = () => {

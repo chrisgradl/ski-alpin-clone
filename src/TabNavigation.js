@@ -1,14 +1,15 @@
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import CupRankingsScreen from './screens/CupRankingsScreen';
-import RankingsDetailScreen from './screens/RankingsDetailScreen';
-import AtheleteDetailScreen from './screens/AtheleteDetailScreen';
-import Ionicons from '@expo/vector-icons/Ionicons';
-import HomeScreen from './screens/HomeScreen';
-import TVScreen from './screens/TVScreen';
-import CalendarScreen from './screens/CalendarScreen';
 import * as React from 'react';
+
+import AtheleteDetailScreen from './screens/AtheleteDetailScreen';
+import CalendarScreen from './screens/CalendarScreen';
+import CupRankingsScreen from './screens/CupRankingsScreen';
+import HomeScreen from './screens/HomeScreen';
+import RankingsDetailScreen from './screens/RankingsDetailScreen';
 import StoryDetailScreen from './screens/StoryDetailScreen';
+import TVScreen from './screens/TVScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -23,12 +24,18 @@ function RankingsStackNavigator() {
         component={CupRankingsScreen}
       />
       <RankingsStack.Screen
-        options={({ route }) => ({ title: route.params.cup.CupRankingName })}
+        options={({ route }) => ({
+          title: route.params?.cup?.CupRankingName ?? '',
+        })}
         name="RankingsDetail"
         component={RankingsDetailScreen}
       />
       <RankingsStack.Screen
-        options={({ route }) => ({ title: `${route.params.data.FirstName} ${route.params.data.LastName}` })}
+        options={({ route }) => ({
+          title: route.params?.data
+            ? `${route.params?.data?.FirstName} ${route.params.data.LastName}`
+            : 'Detail Infos',
+        })}
         name="AtheleteDetail"
         component={AtheleteDetailScreen}
       />

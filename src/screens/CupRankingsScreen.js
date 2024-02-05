@@ -1,14 +1,17 @@
 import React from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import { SegmentedButtons } from 'react-native-paper';
-import CupRankingItem from '../components/CupRankingItem';
+
 import { Colors } from '../StyleConfig';
+import CupRankingItem from '../components/CupRankingItem';
+import ErrorBanner from '../components/ErrorBanner';
+import LoadingView from '../components/LoadingView';
 import Spacer from '../components/Spacer';
 import { useCupRankingsByGender } from '../hooks/dataHooks';
 
 function CupRankingsScreen({ navigation, route }) {
   const [gender, setGender] = React.useState('female');
-  const { data, isPending, error, refetch } = useCupRankingsByGender(
+  const { data, refetch, isPending, error } = useCupRankingsByGender(
     gender === 'female' ? 2 : 1,
   );
 
@@ -21,6 +24,14 @@ function CupRankingsScreen({ navigation, route }) {
   }, [gender, refetch()]);
 
   const nationsCup = data?.find((s) => s.CupRankingId === 1);
+
+  if (isPending) {
+    return <LoadingView />;
+  }
+
+  if (error) {
+    return <ErrorBanner onPress={refetch} visible={error} />;
+  }
 
   return (
     <View style={{ flex: 1, paddingVertical: 16 }}>
