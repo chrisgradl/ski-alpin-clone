@@ -1,5 +1,6 @@
 {
   "expo": {
+    "newArchEnabled": true,
     "scheme": "skialpine",
     "name": "ski-alpin",
     "slug": "ski-alpin",
