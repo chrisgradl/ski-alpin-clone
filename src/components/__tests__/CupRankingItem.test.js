@@ -1,5 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react-native';
 import React from 'react';
+jest.mock('expo-font');
 
 import rankings from '../../data/cup-rankings.json';
 import CupRankingItem from '../CupRankingItem';
