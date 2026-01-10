@@ -38,7 +38,7 @@ async function registerForPushNotificationsAsync() {
 
     try {
       const firebaseToken = await Notifications.getDevicePushTokenAsync();
-      console.log(firebaseToken);
+      console.log('firebase token:', firebaseToken);
     } catch (e) {
       console.log(e);
     }

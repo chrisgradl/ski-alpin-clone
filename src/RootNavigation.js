@@ -3,6 +3,7 @@ import * as React from 'react';
 
 import TabNavigator from './TabNavigation';
 import SettingsScreen from './screens/SettingsScreen';
+import RankingsDetailScreen from './screens/RankingsDetailScreen';
 
 const RootStack = createNativeStackNavigator();
 
@@ -19,6 +20,11 @@ export default function RootNavigation() {
         }}
       >
         <RootStack.Screen name="Settings" component={SettingsScreen} />
+        <RootStack.Screen
+          options={{title: ''}}
+          name="RankingsDetail"
+          component={RankingsDetailScreen}
+        />
       </RootStack.Group>
     </RootStack.Navigator>
   );
