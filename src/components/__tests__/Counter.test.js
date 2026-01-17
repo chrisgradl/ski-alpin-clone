@@ -1,6 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react-native';
 import React from 'react';
-import '@testing-library/react-native/extend-expect';
 
 import { Counter } from '../Counter';
 
