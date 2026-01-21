@@ -27,6 +27,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "f90c9def-1052-4a45-9fba-7d7b243359c3"
+      }
+    },
+    "owner": "cgradl"
   }
 }

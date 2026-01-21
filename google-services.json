@@ -1,36 +1,26 @@
 {
   "project_info": {
-    "project_number": "829921702992",
-    "project_id": "skiapp-faef4",
-    "storage_bucket": "skiapp-faef4.firebasestorage.app"
+    "project_number": "388330762947",
+    "project_id": "ski-alpin-clone-2026",
+    "storage_bucket": "ski-alpin-clone-2026.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:829921702992:android:07f6459e0bcbd4c2990d55",
+        "mobilesdk_app_id": "1:388330762947:android:59af00a8c1d149a864e876",
         "android_client_info": {
           "package_name": "at.cgradl.skiapp"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "829921702992-t8asvvb0ractj88nkmnvamgmem85oip9.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyD9D-qUUvm6mkJOgSIcmEUjGXIjdeVF2ec"
+          "current_key": "AIzaSyAdpmskixJcqiWZQHUCCnvHVkK4ripjeqQ"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "829921702992-t8asvvb0ractj88nkmnvamgmem85oip9.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }
