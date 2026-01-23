@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-const BASE_URL = 'https://appfeeds.orf.at/alpine.v2/api';
+const BASE_URL = 'https://afeeds.orf.at/alpine-api/api';
 
 const ENDPOINTS = {
   stories: `${BASE_URL}/sporton?osType=1`,

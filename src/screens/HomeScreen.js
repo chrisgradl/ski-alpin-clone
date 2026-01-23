@@ -1,11 +1,10 @@
 import React from 'react';
 import {
-  ActivityIndicator,
   RefreshControl,
   ScrollView,
-  View,
 } from 'react-native';
 
+import AIGeneratorCard from '../components/AIGeneratorCard';
 import ErrorBanner from '../components/ErrorBanner';
 import LoadingView from '../components/LoadingView';
 import SiteHeader from '../components/SiteHeader';
@@ -40,6 +39,8 @@ export default function HomeScreen() {
       }
     >
       <SiteHeader story={mainStory} />
+      <Spacer />
+      <AIGeneratorCard />
       <Spacer />
       <Stories stories={[second, third]} />
       <Spacer />

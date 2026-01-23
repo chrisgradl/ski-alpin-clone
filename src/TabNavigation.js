@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
 
+import ChatbaseScreen from './screens/ChatbaseScreen';
 import AtheleteDetailScreen from './screens/AtheleteDetailScreen';
 import CalendarScreen from './screens/CalendarScreen';
 import CupRankingsScreen from './screens/CupRankingsScreen';
@@ -10,6 +11,7 @@ import HomeScreen from './screens/HomeScreen';
 import RankingsDetailScreen from './screens/RankingsDetailScreen';
 import StoryDetailScreen from './screens/StoryDetailScreen';
 import TVScreen from './screens/TVScreen';
+import GeneratedUIScreen from "./screens/GeneratedUIScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -59,6 +61,14 @@ function HomeStackNavigator({ navigation, route }) {
               color={props.tintColor}
             />
           ),
+          headerRight: (props) => (
+            <Ionicons
+              onPress={() => navigation.navigate('ChatbaseScreen')}
+              name="sparkles"
+              size={20}
+              color={props.tintColor}
+            />
+          ),
         }}
         name="HomeScreen"
         component={HomeScreen}
@@ -69,6 +79,16 @@ function HomeStackNavigator({ navigation, route }) {
           title: route.params?.story?.Title ?? '',
         })}
         component={StoryDetailScreen}
+      />
+      <HomeStack.Screen
+        name="ChatbaseScreen"
+        options={{ title: 'AI Chat' }}
+        component={ChatbaseScreen}
+      />
+      <HomeStack.Screen
+        name="GeneratedUIScreen"
+        options={{ title: 'Generated Component' }}
+        component={GeneratedUIScreen}
       />
     </HomeStack.Navigator>
   );

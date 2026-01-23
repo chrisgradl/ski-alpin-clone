@@ -1,7 +1,7 @@
 appId: at.cgradl.skiapp
 ---
 - launchApp: "at.cgradl.skiapp"
-- tapOn: "OK"
+# - tapOn: "OK"
 - assertVisible:
     id: "tabBar-Rankings"
 - tapOn:
@@ -11,4 +11,4 @@ appId: at.cgradl.skiapp
 - tapOn:
     id: "ranking-item-8"
 - tapOn: "1."
-- assertVisible: "AtheleteDetail"
+- assertVisible: "LETZTE DREI WELTCUP PLATZIERUNGEN"
